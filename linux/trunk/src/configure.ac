@@ -90,11 +90,19 @@ AC_ARG_ENABLE(usbids-install,
  *)   AC_MSG_ERROR(bad value ${enableval} for --enable-usbids-install) ;;
  esac])
 AM_CONDITIONAL(INSTALL_USBIDS, test x$usbids = xinstall)
-    	
-
 
 GLIB2_REQUIRED=2.6.0
-PKG_CHECK_MODULES(PACKAGE, glib-2.0 >= $GLIB2_REQUIRED)
+AC_ARG_WITH(glib, AS_HELP_STRING([--with-glib], []),
+[if test "x$with_glib" != "xno"; then
+    PKG_CHECK_MODULES(PACKAGE, glib-2.0 >= $GLIB2_REQUIRED)
+    AC_DEFINE(HAVE_GLIB, 1, use glib library)
+ fi
+],
+[PKG_CHECK_MODULES(PACKAGE, glib-2.0 >= $GLIB2_REQUIRED)
+ AC_DEFINE(HAVE_GLIB, 1, use glib library)
+])
+AM_CONDITIONAL(HAVE_GLIB, test x$with_glib != xno)
+
 AC_SUBST(PACKAGE_CFLAGS)
 AC_SUBST(PACKAGE_LIBS)
 

@@ -1,6 +1,6 @@
 #include <stdio.h>
 #include <unistd.h>
-#include <glib.h>
+#include "glib-stub.h"
 
 struct _GMainContext
 {

@@ -8,9 +8,12 @@
 
 #define _GNU_SOURCE
 #include <getopt.h>
+
+#ifdef HAVE_GLIB
 #include <glib.h>
-
-
+#else
+#include "glib-stub.h"
+#endif
 
 static const struct option longopts[] = {
 	{"usbip",	required_argument,	NULL, 'u'},

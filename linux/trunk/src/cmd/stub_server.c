@@ -29,7 +29,11 @@
 #include "usbip.h"
 #include "usbip_network.h"
 
+#ifdef HAVE_GLIB
 #include <glib.h>
+#else
+#include "glib-stub.h"
+#endif
 
 static const char version[] = PACKAGE_STRING
 	" ($Id$)";

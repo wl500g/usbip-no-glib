@@ -10,7 +10,13 @@
 #include <sys/socket.h>
 
 #include <sysfs/libsysfs.h>
+
+#ifdef HAVE_GLIB
 #include <glib.h>
+#else
+#include "glib-stub.h"
+#endif
+
 #include <unistd.h>
 #include <stdio.h>
 #include <sys/types.h>

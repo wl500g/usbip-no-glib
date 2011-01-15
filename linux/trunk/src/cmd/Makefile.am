@@ -19,3 +19,8 @@ LDADD = ../lib/libusbip.la @PACKAGE_LIBS@
 EXTRA_CFLAGS = @EXTRA_CFLAGS@
 AM_CFLAGS = -Wall -W -Wstrict-prototypes -std=gnu99 $(EXTRA_CFLAGS) @PACKAGE_CFLAGS@ -DUSBIDS_FILE='"@USBIDS_DIR@/usb.ids"'
 
+if !HAVE_GLIB
+usbip_SOURCES += glib-stub.c glib-stub.h
+usbipd_SOURCES += glib-stub.c glib-stub.h
+usbip_bind_driver_SOURCES += glib-stub.c glib-stub.h
+endif
